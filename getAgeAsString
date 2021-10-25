@@ -1,17 +1,4 @@
-USE [Utility]
-
-GO
-
-/****** Object:  UserDefinedFunction [xTools].[getAgeAsString]    Script Date: 25.10.2021 12:18:48 ******/
-SET ANSI_NULLS ON
-
-GO
-
-SET QUOTED_IDENTIFIER ON
-
-GO
-
-ALTER FUNCTION [xTools].[getAgeAsString](
+CREATE FUNCTION [xTools].[getAgeAsString](
   @dayOfBirth DATETIME
  ,@today      DATETIME
 )
@@ -21,7 +8,7 @@ AS
   ** kdbSomething
   ** 20.04.2015
   **
-  ** select[xTools].[getAgeAsString](DATEFROMPARTS(1961, 9, 29), getdate()) 
+  ** select [xTools].[getAgeAsString](DATEFROMPARTS(1981, 7, 20), getdate()) 
   **
   */
   BEGIN
