@@ -1,0 +1,46 @@
+USE [Utility]
+
+GO
+
+/****** Object:  UserDefinedFunction [xTools].[getAgeAsString]    Script Date: 25.10.2021 12:18:48 ******/
+SET ANSI_NULLS ON
+
+GO
+
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+ALTER FUNCTION [xTools].[getAgeAsString](
+  @dayOfBirth DATETIME
+ ,@today      DATETIME
+)
+RETURNS VARCHAR(100)
+AS
+  /*
+  ** kdbSomething
+  ** 20.04.2015
+  **
+  ** select[xTools].[getAgeAsString](DATEFROMPARTS(1961, 9, 29), getdate()) 
+  **
+  */
+  BEGIN
+      DECLARE @thisYearBirthDay AS DATETIME
+              ,@years           AS INT
+              ,@months          AS INT
+              ,@days            AS INT
+
+      SET @thisYearBirthDay = DATEADD(year, DATEDIFF(year, @dayOfBirth, @today), @dayOfBirth)
+      SET @years = DATEDIFF(year, @dayOfBirth, @today) - (CASE
+                                                            WHEN @thisYearBirthDay > @today THEN 1
+                                                            ELSE 0
+                                                          END)
+      SET @months = MONTH(@today - @thisYearBirthDay) - 1
+      SET @days = DAY(@today - @thisYearBirthDay) - 1
+
+      RETURN CAST(@years AS VARCHAR(3)) + ' Jahre, '
+             + CAST(@months AS VARCHAR(2))
+             + ' Monate und ' + CAST(@days AS VARCHAR(3))
+             + ' Tage'
+
+  END 
