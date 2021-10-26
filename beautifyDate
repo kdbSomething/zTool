@@ -1,0 +1,16 @@
+CREATE FUNCTION [beautifyDate](
+  @beautifyMe DATETIME
+)
+RETURNS VARCHAR(10)
+AS
+  /*
+  **
+  **  kdbSomething
+  **  08.06.2015
+  **
+  **  SELECT [beautifyDate] (getdate())
+  **  
+  */
+  BEGIN
+      RETURN isnull(try_convert(varchar(10), @beautifyMe, 104), '')
+  END 
