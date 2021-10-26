@@ -30,4 +30,4 @@ AS
              + ' Monate und ' + CAST(@days AS VARCHAR(3))
              + ' Tage'
 
-  END 
+  END
