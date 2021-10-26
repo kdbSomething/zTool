@@ -1,4 +1,4 @@
-CREATE FUNCTION [xTools].[getAgeAsString](
+CREATE FUNCTION [getAgeAsString](
   @dayOfBirth DATETIME
  ,@today      DATETIME
 )
@@ -8,7 +8,7 @@ AS
   ** kdbSomething
   ** 20.04.2015
   **
-  ** select [xTools].[getAgeAsString](DATEFROMPARTS(1981, 7, 20), getdate()) 
+  ** select [getAgeAsString](DATEFROMPARTS(1981, 7, 20), getdate()) 
   **
   */
   BEGIN
